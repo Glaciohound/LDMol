@@ -1,4 +1,4 @@
-# LDMol
+# ⚛️ LDMol
 
 Official GitHub repository for LDMol, a latent text-to-molecule diffusion model.
 The details can be found in the following paper: 
@@ -15,10 +15,10 @@ LDMol not only can generate molecules according to the given text prompt, but it
 
 ***
 
-## Requirements
+## 🛠️ Requirements
 Run `conda env create -f requirements.yaml` and it will generate a conda environment named `ldmol`.
 
-## Inference
+## 🎯 Inference
 Check out the arguments in the script files to see more details.
 
 __1. text-to-molecule generation__
@@ -47,6 +47,6 @@ TOKENIZERS_PARALLELISM=false CUDA_VISIBLE_DEVICES=0 torchrun --nnodes=1 --nproc_
 ```
 
 
-## Acknowledgement
+## 💡 Acknowledgement
 * The code for DiT diffusion model is based on & modified from the official code of [DiT](https://github.com/facebookresearch/DiT).
 * The code for BERT with cross-attention layers `xbert.py` and schedulers are modified from the one in [ALBEF](https://github.com/salesforce/ALBEF).
