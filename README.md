@@ -1,19 +1,21 @@
 # ⚛️ LDMol
 
 Official GitHub repository for LDMol, a latent text-to-molecule diffusion model.
-The details can be found in the following paper: 
-
-*LDMol: Text-Conditioned Molecule Diffusion Model Leveraging Chemically Informative Latent Space. ([arxiv 2024](https://arxiv.org/abs/2405.17829))*
-
-![fig1](https://github.com/user-attachments/assets/dcfe5b56-ae1b-4f25-9181-66f081994f71)
-
-![ldmol_fig3 (2)](https://github.com/user-attachments/assets/00c41ec0-cdd1-48fe-8a71-37310c14f38d)
+The details can be found in the paper
+*[LDMol: Text-Conditioned Molecule Diffusion Model Leveraging Chemically Informative Latent Space(arxiv 2024)](https://arxiv.org/abs/2405.17829)*.
 
 LDMol not only can generate molecules according to the given text prompt, but it's also able to perform various downstream tasks including molecule-to-text retrieval and text-guided molecule editing.
 
 ***<ins>The model checkpoint and data are too heavy to be included in this repo and can be found in [here](https://drive.google.com/drive/folders/170znWA5u3nC7S1mzF7RPNP5faAn56Q45?usp=sharing).<ins>***
 
+![fig1](https://github.com/user-attachments/assets/dcfe5b56-ae1b-4f25-9181-66f081994f71)
+
+![ldmol_fig3 (2)](https://github.com/user-attachments/assets/00c41ec0-cdd1-48fe-8a71-37310c14f38d)
+
 ***
+
+## 📑 Abstract
+The unavoidable discreteness of a molecule makes it difficult for a diffusion model to connect raw data with highly complex conditions like natural language. To address this, we present a novel latent diffusion model dubbed LDMol for text-conditioned molecule generation. LDMol comprises a molecule autoencoder that produces a learnable and structurally informative feature space, and a natural language-conditioned latent diffusion model. In particular, recognizing that multiple SMILES notations can represent the same molecule, we employ a contrastive learning strategy to extract feature space that is aware of the unique characteristics of the molecule structure. LDMol outperforms the existing baselines on the text-to-molecule generation benchmark, suggesting a potential for diffusion models can outperform autoregressive models in text data generation with a better choice of the latent domain. Furthermore, we show that LDMol can be applied to downstream tasks such as molecule-to-text retrieval and text-guided molecule editing, demonstrating its versatility as a diffusion model.
 
 ## 🛠️ Requirements
 Run `conda env create -f requirements.yaml` and it will generate a conda environment named `ldmol`.
