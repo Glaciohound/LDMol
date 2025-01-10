@@ -185,7 +185,7 @@ class ldmol_encoder(pl.LightningModule):
         text_input_ids = self.tokenizer(text1, truncation='longest').to(self.device)
         text_attention_mask = torch.where(text_input_ids == 0, 0, 1).to(self.device)
         text2_input_ids = self.tokenizer(text2, truncation='longest').to(self.device)
-        text2_attention_mask = torch.where(text_input_ids == 0, 0, 1).to(self.device)
+        text2_attention_mask = torch.where(text2_input_ids == 0, 0, 1).to(self.device)
         alpha = self.config['alpha'] if self.current_epoch > 0 else self.config['alpha'] * min(1., batch_idx / self.loader_len)
 
         # loss = self(text_input1.input_ids[:, 1:], text_input1.attention_mask[:, 1:], text_input2.input_ids[:, 1:], text_input2.attention_mask[:, 1:], alpha=alpha)
@@ -306,10 +306,10 @@ def evaluate(args, config):
         text2 = ['[CLS]' + Chem.MolToSmiles(model.aug([Chem.MolFromSmiles(t[5:])])[0], canonical=False, isomericSmiles=True) for t in text1]
         # text_input1 = model.tokenizer(text1, padding='longest', truncation=True, max_length=128, return_tensors="pt").to(model.device)
         # text_input2 = model.tokenizer(text2, padding='longest', truncation=True, max_length=128, return_tensors="pt").to(model.device)
-        text_input_ids = model.tokenizer(text1, truncation='longest').to(self.device)
-        text_attention_mask = torch.where(text_input_ids == 0, 0, 1).to(self.device)
-        text2_input_ids = model.tokenizer(text2, truncation='longest').to(self.device)
-        text2_attention_mask = torch.where(text_input_ids == 0, 0, 1).to(self.device)
+        text_input_ids = model.tokenizer(text1, truncation='longest').to(model.device)
+        text_attention_mask = torch.where(text_input_ids == 0, 0, 1).to(model.device)
+        text2_input_ids = model.tokenizer(text2, truncation='longest').to(model.device)
+        text2_attention_mask = torch.where(text2_input_ids == 0, 0, 1).to(model.device)
         
         # text1_embeds = model.text_encoder(text_input1.input_ids[:, 1:], attention_mask=text_input1.attention_mask[:, 1:], return_dict=True).last_hidden_state
         text1_embeds = model.text_encoder(text_input_ids, attention_mask=text_attention_mask, return_dict=True).last_hidden_state
