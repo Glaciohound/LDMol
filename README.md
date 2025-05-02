@@ -1,10 +1,12 @@
-# ⚛️ LDMol [ICML2025]
+# ⚛️ LDMol
 
 Official GitHub repository for LDMol, a latent text-to-molecule diffusion model.
 The details can be found in the paper
 *[LDMol: Text-Conditioned Molecule Diffusion Model Leveraging Chemically Informative Latent Space](https://arxiv.org/abs/2405.17829)*.
 
 LDMol not only can generate molecules according to the given text prompt, but it's also able to perform various downstream tasks including molecule-to-text retrieval and text-guided molecule editing.
+
+**🎉 The paper is accepted(poster) in ICML 2025.**
 
 ![fig1](https://github.com/user-attachments/assets/dcfe5b56-ae1b-4f25-9181-66f081994f71)
 
