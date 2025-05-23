@@ -29,28 +29,28 @@ __1. text-to-molecule generation__
 
    * zero-shot: The model gets a hand-written text prompt.
        ```
-       CUDA_VISIBLE_DEVICES=0,1 torchrun --nnodes=1 --nproc_per_node=2 inference_demo.py --num-samples 100 --ckpt ./Pretrain/checkpoint_ldmol.pt --prompt="This molecule includes benzoyl group." --cfg-scale=5
+       CUDA_VISIBLE_DEVICES=0,1 torchrun --nnodes=1 --nproc_per_node=2 inference_demo.py --num-samples 100 --ckpt ./Pretrain/checkpoint_ldmol.pt --prompt="This molecule includes benzoyl group." --cfg-scale=2.5
        ```
    * benchmark dataset: The model performs text-to-molecule generation on ChEBI-20 test set. The evaluation metrics will be printed at the end.
        ```
-       TOKENIZERS_PARALLELISM=false CUDA_VISIBLE_DEVICES=0 torchrun --nnodes=1 --nproc_per_node=1 inference_t2m.py --ckpt ./Pretrain/checkpoint_ldmol.pt --cfg-scale=3.5
+       CUDA_VISIBLE_DEVICES=0 torchrun --nnodes=1 --nproc_per_node=1 inference_t2m.py --ckpt ./Pretrain/checkpoint_ldmol.pt --cfg-scale=2.5
        ```
 
 __2. molecule-to-text retrieval__
 
 The model performs molecule-to-text retrieval on the given dataset. `--level` controls the quality of the query text(paragraph/sentence). `--n-iter` is the number of function evaluations of our model.
 ```
-TOKENIZERS_PARALLELISM=false CUDA_VISIBLE_DEVICES=0 torchrun --nnodes=1 --nproc_per_node=1 inference_retrieval_m2t.py --ckpt ./Pretrain/checkpoint_ldmol.pt --dataset="./data/PCdes/test.txt" --level="paragraph" --n-iter=10
+CUDA_VISIBLE_DEVICES=0 torchrun --nnodes=1 --nproc_per_node=1 inference_retrieval_m2t.py --ckpt ./Pretrain/checkpoint_ldmol.pt --dataset="./data/PCdes/test.txt" --level="paragraph" --n-iter=10
 ```
 
 __3. text-guided molecule editing__
 
 The model performs a DDS-style text-guided molecule editing. `--source-text` should describe the `--input-smiles`. `--target-text` is your desired molecule description.
 ```
-TOKENIZERS_PARALLELISM=false CUDA_VISIBLE_DEVICES=0 torchrun --nnodes=1 --nproc_per_node=1 inference_dds.py --ckpt ./Pretrain/checkpoint_ldmol.pt --input-smiles="C[C@H](CCc1ccccc1)Nc1ccc(C#N)cc1F" --source-text="This molecule contains fluorine." --target-text="This molecule contains bromine."
+CUDA_VISIBLE_DEVICES=0 torchrun --nnodes=1 --nproc_per_node=1 inference_dds.py --ckpt ./Pretrain/checkpoint_ldmol.pt --input-smiles="C[C@H](CCc1ccccc1)Nc1ccc(C#N)cc1F" --source-text="This molecule contains fluorine." --target-text="This molecule contains bromine."
 ```
 
 
 ## 💡 Acknowledgement
 * The code for DiT diffusion model is based on & modified from the official code of [DiT](https://github.com/facebookresearch/DiT).
-* The code for BERT with cross-attention layers `xbert.py` and schedulers are modified from the one in [ALBEF](https://github.com/salesforce/ALBEF).
+* The code for BERT with cross-attention layers `xbert.py` and schedulers is modified from the one in [ALBEF](https://github.com/salesforce/ALBEF).
