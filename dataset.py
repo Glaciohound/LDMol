@@ -13,7 +13,7 @@ class smi_txt_dataset(Dataset):
             with open(dp, 'r') as r:
                 self.data += [l.strip() for l in r.readlines()][1 if dp.endswith('.csv') else 0:]
         # if not raw_description: self.data = [l for l in self.data if 'natural product' not in l]
-
+        self.data = [l for l in self.data if len(l.split('\t')[0]) < 350]        # FCD doesn't work for SMILES longer than 350 characters
         if shuffle:
             random.shuffle(self.data)
 
